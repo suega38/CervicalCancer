@@ -1,0 +1,1098 @@
+<Label>
+    color: (0/255.0,156/255.0,166/255.0,1)
+    size_hint: 0.3, 0.3
+    font_size: 16
+
+<TextInput>
+    size_hint: 0.45, 0.05
+    font_size: 14
+    
+<Button>
+    color: (1,1,1,1)
+    font_size: 14
+    size_hint: (0.3, 0.08)
+    background_normal: ''
+    background_color: (0,0,0,0)
+    canvas.before:
+        Color:
+            rgba: (0/255.0,156/255.0,166/255.0,1)
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: [28]
+
+<CreateAccountWindow>:
+    name: "create"
+    padding: 10
+    spacing: 10
+    namee: namee
+    email: email
+    password: passw
+    phone: hp
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height/2
+
+            Label:
+                text: "Create Account" 
+                bold: True
+                pos_hint: {"x":0.35, "y":0.81}
+                font_size: 23 
+
+            Button: 
+                background_color: (1,1,1,1)
+                pos_hint: {"x":0, "y": 0.92}
+                size_hint: (0.07, 0.07)
+                on_release: app.root.current = "welcome"
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Image:
+                    source: 'images/arrow.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+            Label:
+                text: "Welcome" 
+                pos_hint: {"x":0.35, "y":0.66}
+                font_size: 52
+            Label:
+                text: "Please fill in this form to create an account." 
+                pos_hint: {"x":0.35, "y":0.53}
+                font_size: 14
+            Label:
+                pos_hint: {"x":0.075, "top":0.75}
+                text: "Name: "
+
+            TextInput:
+                pos_hint: {"x": 0.4 , "top":0.63}
+                id: namee
+                multiline: False
+
+            Label:
+                pos_hint: {"x":0.075, "top":0.68}
+                text: "Email: "
+
+            TextInput:
+                pos_hint: {"x":0.4, "top":0.56}
+                id: email
+                multiline: False
+
+            Label:
+                pos_hint: {"x":0.075, "top":0.61}
+                text: "Password: "
+
+            TextInput:
+                pos_hint: {"x":0.4, "top":0.49}
+                id: passw
+                multiline: False
+                password: True
+                
+            Label:
+                pos_hint: {"x":0.075, "top":0.54}
+                text: "Phone Number: "
+
+            TextInput:
+                pos_hint: {"x":0.4, "top":0.42}
+                id: hp
+                multiline: False
+
+        Button:
+            pos_hint:{"x":0.35,"y":0.1}
+            text: "Log In"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.login()
+
+        Button:
+            pos_hint:{"x":0.35,"y":0.2}
+            text: "Submit"
+            on_release:
+                root.manager.transition.direction = "left"
+                root.submit()
+
+
+<LoginWindow>:
+    name: "login"
+    namee: namee
+    password: password
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height
+
+            Label:
+                text: "Log In" 
+                pos_hint: {"x":0.35, "y":0.81}
+                font_size: 23
+                bold: True
+
+            Button: 
+                background_color: (1,1,1,1)
+                pos_hint: {"x":0, "y": 0.92}
+                size_hint: (0.07, 0.07)
+                on_release: app.root.current = "welcome"
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Image:
+                    source: 'images/arrow.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+            Label:
+                text: "Hello!" 
+                pos_hint: {"x":0.35, "y":0.66}
+                font_size: 52
+
+            FloatLayout:
+
+                Label:
+                    text:"Name: "
+                    pos_hint: {"x":0.075, "top":0.75}
+
+                TextInput:
+                    id: namee
+                    multiline: False
+                    pos_hint: {"x": 0.35 , "top":0.63}
+
+                Label:
+                    text:"Password: "
+                    pos_hint: {"x":0.075, "top":0.55}
+
+                TextInput:
+                    id: password
+                    multiline: False
+                    password: True
+                    pos_hint: {"x": 0.35, "top":0.43}
+
+                Button:
+                    pos_hint:{"x":0.375,"y":0.18}
+                    text: "Login"
+                    on_release:
+                        root.manager.transition.direction = "up"
+                        root.loginBtn()
+
+<WelcomeWindow>:
+    name: "welcome"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/cervicalcancer.png'
+
+    padding: 40
+    spacing: 20
+    FloatLayout:
+        Label:
+            pos_hint:{"x": 0.08, "top":0.85}
+            text: "Cervical Cancer \n     Prediction"
+            multiline: True
+            color: (1,1,1,1)
+            bold: True
+            font_size: 45
+            size_hint: (0.845, 0.35)
+            background_normal: ''
+            background_color: (0/255.0,156/255.0,166/255.0,.85)
+            #bg color
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [68]
+        Button:
+            pos_hint:{"x":0.35,"y":0.23}
+            text: "Login"
+            on_release:
+                root.manager.transition.direction = "up"
+                root.logIn()
+
+        Button:
+            pos_hint:{"x":0.35,"y":0.1}
+            text: "Create Account"
+            on_release:
+                root.manager.transition.direction = "right"
+                root.create()
+
+<ProfileWindow>:
+    name: "profile"
+    namee: namee
+    email: email
+    phone:phone
+    password:password
+    padding: 10
+    spacing: 10
+            
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height
+
+            Label:
+                text: "Profile" 
+                pos_hint: {"x":0.35, "y":0.81}
+                font_size: 23
+                bold: True
+
+            Button: 
+                background_color: (1,1,1,1)
+                pos_hint: {"x":0, "y": 0.92}
+                size_hint: (0.07, 0.07)
+                on_release: app.root.current = "home"
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Image:
+                    source: 'images/arrow.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+            FloatLayout:
+                Label:
+                    id: namee
+                    pos_hint: {"x":0.15, "top":0.8}
+                    text: "Name: "
+                    color: (0,0,0,1)
+                    size_hint: 0.7, 0.1
+                    background_color: (0,0,0,0)
+                    canvas.before:
+                        Color:
+                            rgba: (0/255.0,156/255.0,166/255.0,1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [22]
+
+                Label:
+                    id: email
+                    pos_hint: {"x":0.15, "top":0.65}
+                    text: "Email Address: "
+                    color: (0,0,0,1)
+                    size_hint: 0.7, 0.1
+                    background_color: (0,0,0,0)
+                    canvas.before:
+                        Color:
+                            rgba: (0/255.0,156/255.0,166/255.0,1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [22]
+
+                Label:
+                    id: phone
+                    pos_hint: {"x":0.15, "top":0.5}
+                    text: "Contact Number: "
+                    color: (0,0,0,1)
+                    size_hint: 0.7, 0.1
+                    background_color: (0,0,0,0)
+                    canvas.before:
+                        Color:
+                            rgba: (0/255.0,156/255.0,166/255.0,1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [22]
+
+                Label:
+                    id: password
+                    pos_hint: {"x":0.15, "top":0.35}
+                    text: "Password:"
+                    color: (0,0,0,1)
+                    size_hint: 0.7, 0.1
+                    background_color: (0,0,0,0)
+                    canvas.before:
+                        Color:
+                            rgba: (0/255.0,156/255.0,166/255.0,1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [22]
+
+                Button:
+                    pos_hint:{"x":0.35,"y":0.08}
+                    text: "Log Out"
+                    on_release:
+                        app.root.current = "welcome"
+                        root.manager.transition.direction = "down"
+
+<HomeWindow>:
+    name: "home"
+    padding: 10
+    spacing: 10
+
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height
+
+            Label:
+                text: "Homepage" 
+                pos_hint: {"x":0.35, "y":0.81}
+                font_size: 23
+                bold: True
+
+            Button: 
+                background_color: (1,1,1,1)
+                pos_hint: {"x":0, "y": 0.92}
+                size_hint: (0.07, 0.07)
+                on_release: app.root.current = "welcome"
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Image:
+                    source: 'images/arrow.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+            Button: 
+                background_color: (1,1,1,1)
+                pos_hint: {"x":0.9, "y": 0.92}
+                size_hint: (0.07, 0.07)
+                on_release: app.root.current = "profile"
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Image:
+                    source: 'images/profile.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+            FloatLayout:
+                Button:
+                    pos_hint: {"x":0.15, "top":0.8}
+                    on_release: app.root.current = "predict"
+                    color: (0,0,0,1)
+                    size_hint: 0.7, 0.25
+                    canvas.before:
+                        Color:
+                            rgba: (0/255.0,156/255.0,166/255.0,1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [22]
+                    Image:
+                        source: 'images/predict.png'
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                    Label: 
+                        center_x: self.parent.center_x
+                        y:455
+                        font_size: 35
+                        bold: True
+                        text: "Predict"
+                        color: (0,0,0,1)
+                        background_color: (1,1,1,1)
+                        bold: True
+
+                Button:
+                    pos_hint: {"x":0.15, "top":0.4}
+                    text: "Record"
+                    on_release: app.root.current = "record"
+                    color: (0,0,0,1)
+                    size_hint: 0.7, 0.25
+                    canvas.before:
+                        Color:
+                            rgba: (0/255.0,156/255.0,166/255.0,1)
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [22]
+                    Image:
+                        source: 'images/record.png'
+                        center_x: self.parent.center_x
+                        center_y: self.parent.center_y
+                    Label: 
+                        y:215
+                        center_x: self.parent.center_x
+                        font_size: 35
+                        bold: True
+                        text: "Record"
+                        color: (0,0,0,1)
+                        background_color: (1,1,1,1)
+                        bold: True
+
+<PredictWindow>:
+    name: "predict"
+    age: age
+    smokeDuration:smokeDuration
+    pregnancy:pregnancy
+    sexualPartners:sexualPartners
+    Label:
+        text: "Predict" 
+        bold: True
+        pos_hint: {"x":0.35, "y":0.81}
+        font_size: 23 
+
+    Button: 
+        background_color: (1,1,1,1)
+        pos_hint: {"x":0, "y": 0.92}
+        size_hint: (0.07, 0.07)
+        on_release: app.root.current = "home"
+        canvas.before:
+            Color:
+                rgba: (1,1,1,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Image:
+            source: 'images/arrow.png'
+            center_x: self.parent.center_x
+            center_y: self.parent.center_y
+    Label:
+        text: "Please fill in this questionnaire to generate prediction result. " 
+        pos_hint: {"x":0.35, "y":0.73}
+        font_size: 12
+    ScrollView:
+        do_scroll_y: True
+        do_scroll_x: False
+        size_hint: (0.85,0.6)
+        font_size: 10
+        pos_hint:{'center_x':0.5, 'center_y':0.5}
+        GridLayout:
+            size_hint_y: None
+            height:self.minimum_height
+            width: self.minimum_width
+            cols:1
+            spacing:15
+            size_hint: 1, None
+            height:1000
+            width:90
+            Label:
+                font_size: 16
+                text: "How old are you? "
+                color: (0,0,0,1)
+                canvas:
+                    # draw a background of teal. This will be the border
+                    Color:
+                        rgba: (0/255.0,128/255.0,128/255.0,0.3)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+            TextInput:
+                size_hint: 0.45, 0.2
+                id: age
+                multiline: False
+                input_type: 'number'
+                input_filter: 'int'
+
+            Label:
+                text: "Do you smoke or have you ever smoke? "
+                font_size: 16
+                color: (0,0,0,1)
+                canvas:
+                    # draw a background of teal. This will be the border
+                    Color:
+                        rgba: (0/255.0,128/255.0,128/255.0,0.3)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+            BoxLayout:
+                #color: (0,0,0,1)
+                height:self.minimum_height
+                width: self.minimum_width
+                orientation: 'horizontal'
+                size_hint: 0.3,0.17
+                cols:2
+                canvas:
+                    #  This will be the border
+                    Color:
+                        rgba: (161/255.0,176/255.0,181/255.0,0.3)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    color: (0,0,0,1)
+                    pos_hint:{'center_x':.5,'y':0.3}
+                    font_size: 14
+                    text: "No "
+                CheckBox:
+                    id: smoke
+                    group: "smoke"
+                    color: (0,0,0,1)
+                    pos_hint:{'y':0}
+                    on_active: root.checkbox_smoke(self,self.active,"1")
+                Label:
+                    color: (0,0,0,1)
+                    pos_hint:{'center_x':.5,'y':0.3}
+                    font_size: 14
+                    text: "Yes "
+                CheckBox:
+                    id: smoke
+                    group: "smoke"
+                    color: (0,0,0,1)
+                    pos_hint:{'y':0}
+                    on_active: root.checkbox_smoke(self,self.active,"2")
+            Label:
+                font_size: 16
+                color: (0,0,0,1)
+                canvas:
+                    # draw a background of teal. This will be the border
+                    Color:
+                        rgba: (0/255.0,128/255.0,128/255.0,0.3)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "If you smoke, how long have you been smoking? (years)"
+            TextInput:
+                size_hint: 0.45, 0.2
+                id: smokeDuration 
+                multiline: False
+                input_type: 'number'
+                input_filter: 'int'
+            
+            Label:
+                font_size: 16
+                color: (0,0,0,1)
+                canvas:
+                    # draw a background of teal. This will be the border
+                    Color:
+                        rgba: (0/255.0,128/255.0,128/255.0,0.3)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "Do you have any family history of cervical cancer? "
+            BoxLayout:
+                #color: (0,0,0,1)
+                height:self.minimum_height
+                width: self.minimum_width
+                orientation: 'horizontal'
+                size_hint: 0.3,0.17
+                cols:2
+                canvas:
+                    #  This will be the border
+                    Color:
+                        rgba: (161/255.0,176/255.0,181/255.0,0.3)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    color: (0,0,0,1)
+                    pos_hint:{'center_x':.5,'y':0.3}
+                    font_size: 14
+                    text: "No "
+                CheckBox:
+                    id: famHistory
+                    group:"famHistory"
+                    color: (0,0,0,1)
+                    pos_hint:{'y':0}
+                    on_active: root.checkbox_fam(self,self.active,"1")
+                Label:
+                    color: (0,0,0,1)
+                    pos_hint:{'center_x':.5,'y':0.3}
+                    font_size: 14
+                    text: "Yes "
+                CheckBox:
+                    id: famHistory
+                    group:"famHistory"
+                    color: (0,0,0,1)
+                    pos_hint:{'y':0}
+                    on_active: root.checkbox_fam(self,self.active,"2")
+            Label:
+                font_size: 16
+                color: (0,0,0,1)
+                canvas:
+                    # draw a background of teal. This will be the border
+                    Color:
+                        rgba: (0/255.0,128/255.0,128/255.0,0.3)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "Have you been diagnosed with HIV? "
+            BoxLayout:
+                #color: (0,0,0,1)
+                height:self.minimum_height
+                width: self.minimum_width
+                orientation: 'horizontal'
+                size_hint: 0.3,0.17
+                cols:2
+                canvas:
+                    #  This will be the border
+                    Color:
+                        rgba: (161/255.0,176/255.0,181/255.0,0.3)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    color: (0,0,0,1)
+                    pos_hint:{'center_x':.5,'y':0.3}
+                    font_size: 14
+                    text: "No "
+                CheckBox:
+                    id: hiv
+                    group:"hiv"
+                    color: (0,0,0,1)
+                    pos_hint:{'y':0}
+                    on_active: root.checkbox_hiv(self,self.active,"1")
+                Label:
+                    color: (0,0,0,1)
+                    pos_hint:{'center_x':.5,'y':0.3}
+                    font_size: 14
+                    text: "Yes "
+                CheckBox:
+                    id: hiv
+                    group:"hiv"
+                    color: (0,0,0,1)
+                    pos_hint:{'y':0}
+                    on_active: root.checkbox_hiv(self,self.active,"2")
+            Label:
+                font_size: 16
+                color: (0,0,0,1)
+                canvas:
+                    # draw a background of teal. This will be the border
+                    Color:
+                        rgba: (0/255.0,128/255.0,128/255.0,0.3)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "Have you been diagnosed with STD? "
+            BoxLayout:
+                height:self.minimum_height
+                width: self.minimum_width
+                orientation: 'horizontal'
+                size_hint: 0.3,0.17
+                cols:2
+                canvas:
+                    #  This will be the border
+                    Color:
+                        rgba: (161/255.0,176/255.0,181/255.0,0.3)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    color: (0,0,0,1)
+                    pos_hint:{'center_x':.5,'y':0.3}
+                    font_size: 14
+                    text: "No "
+                CheckBox:
+                    id: std
+                    group:"std"
+                    color: (0,0,0,1)
+                    pos_hint:{'y':0}
+                    on_active: root.checkbox_std(self,self.active,"1")
+                Label:
+                    color: (0,0,0,1)
+                    pos_hint:{'center_x':.5,'y':0.3}
+                    font_size: 14
+                    text: "Yes "
+                CheckBox:
+                    id: std
+                    group:"std"
+                    color: (0,0,0,1)
+                    pos_hint:{'y':0}
+                    on_active: root.checkbox_std(self,self.active,"2")
+
+            Label:
+                font_size: 16
+                color: (0,0,0,1)
+                canvas:
+                    # draw a background of teal. This will be the border
+                    Color:
+                        rgba: (0/255.0,128/255.0,128/255.0,0.3)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "How many times have you been pregnant? "
+            TextInput:
+                size_hint: 0.45, 0.2
+                id: pregnancy 
+                multiline: False
+                input_type: 'number'
+                input_filter: 'int'
+
+            Label:
+                font_size: 16
+                color: (0,0,0,1)
+                canvas:
+                    # draw a background of teal. This will be the border
+                    Color:
+                        rgba: (0/255.0,128/255.0,128/255.0,0.3)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "Have you ever been on hormonal contraception?\n(Example: Contraceptive pills, implant, intra-uterine device, etc) "
+            BoxLayout:
+                #color: (0,0,0,1)
+                height:self.minimum_height
+                width: self.minimum_width
+                orientation: 'horizontal'
+                size_hint: 0.3,0.17
+                cols:2
+                canvas:
+                    #  This will be the border
+                    Color:
+                        rgba: (161/255.0,176/255.0,181/255.0,0.3)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    color: (0,0,0,1)
+                    pos_hint:{'center_x':.5,'y':0.3}
+                    font_size: 14
+                    text: "No "
+                CheckBox:
+                    id: contraception
+                    group:"contraception"
+                    color: (0,0,0,1)
+                    pos_hint:{'y':0}
+                    on_active: root.checkbox_click(self,self.active,"1")
+                Label:
+                    color: (0,0,0,1)
+                    pos_hint:{'center_x':.5,'y':0.3}
+                    font_size: 14
+                    text: "Yes "
+                CheckBox:
+                    id: contraception
+                    group:"contraception"
+                    color: (0,0,0,1)
+                    pos_hint:{'y':0}
+                    on_active: root.checkbox_click(self,self.active,"2")
+            Label:
+                font_size: 16
+                color: (0,0,0,1)
+                canvas:
+                    # draw a background of teal. This will be the border
+                    Color:
+                        rgba: (0/255.0,128/255.0,128/255.0,0.3)
+                    RoundedRectangle:
+                        pos: self.pos
+                        size: self.size
+                text: "How many sexual partners that you have until now? "
+            TextInput:
+                size_hint: 0.45, 0.2
+                id: sexualPartners 
+                multiline: False
+                input_type: 'number'
+                input_filter: 'int'
+
+    Button:
+        pos_hint:{"x":0.35,"y":0.02}
+        text: "Submit"
+        on_release:
+            app.root.current = "result"
+            root.manager.transition.direction = "left"
+            root.submitP()
+
+<RecordWindow>:
+    name: "record"
+    output: output
+    age: age
+    smoke: smoke
+    smokeDuration:smokeDuration
+    famHistory:famHistory
+    std:std
+    hiv:hiv
+    pregnancy:pregnancy
+    contraception:contraception
+    sexualPartners:sexualPartners
+    padding: 10
+    spacing: 10
+            
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height
+
+            Label:
+                text: "Record" 
+                pos_hint: {"x":0.35, "y":0.81}
+                font_size: 23
+                bold: True
+
+            Button: 
+                background_color: (1,1,1,1)
+                pos_hint: {"x":0, "y": 0.92}
+                size_hint: (0.07, 0.07)
+                on_release: app.root.current = "home"
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Image:
+                    source: 'images/arrow.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+            Button: 
+                background_color: (1,1,1,1)
+                pos_hint: {"x":0.9, "y": 0.92}
+                size_hint: (0.07, 0.07)
+                on_release: app.root.current = "profile"
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Image:
+                    source: 'images/profile.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+            Label:
+                text: "This is your latest result based on the most recent prediction:  " 
+                pos_hint: {"x":0.35, "y":0.77}
+                font_size: 12
+            Label:
+                id:output
+                text: ""
+                x:400
+                y:420
+                pos_hint:{'center_x':0.5}
+                font_size: 50
+                bold: True
+                color: (0,0,0,1)
+            
+            ScrollView:
+                do_scroll_y: True
+                do_scroll_x: False
+                size_hint: (0.85,0.7)
+                font_size: 10
+                pos_hint:{'center_x':0.5, 'center_y':0.4}
+                GridLayout:
+                    size_hint_y: None
+                    height:self.minimum_height
+                    width: self.minimum_width
+                    cols:1
+                    spacing:15
+                    padding:20
+                    size_hint: 1, None
+                    height:1000
+                    width:90
+                    Label:
+                        id: age
+                        #pos_hint: {"x":0.15, "top":0.8}
+                        text: ""
+                        color: (0,0,0,1)
+                        #size_hint: 0.7, 0.1
+                        canvas.before:
+                            Color:
+                                rgba: (0/255.0,156/255.0,166/255.0,1)
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+                                radius: [2]
+
+                    Label:
+                        id: smoke
+                        #pos_hint: {"x":0.15, "top":0.65}
+                        text: ""
+                        color: (0,0,0,1)
+                        #size_hint: 0.7, 0.1
+                        canvas.before:
+                            Color:
+                                rgba: (0/255.0,156/255.0,166/255.0,1)
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+                                radius: [2]
+
+                    Label:
+                        id: smokeDuration
+                        #pos_hint: {"x":0.15, "top":0.5}
+                        text: ""
+                        color: (0,0,0,1)
+                        #size_hint: 0.7, 0.1
+                        canvas.before:
+                            Color:
+                                rgba: (0/255.0,156/255.0,166/255.0,1)
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+                                radius: [2]
+
+                    Label:
+                        id: famHistory
+                    # pos_hint: {"x":0.15, "top":0.35}
+                        text: ""
+                        color: (0,0,0,1)
+                    # size_hint: 0.7, 0.1
+                        canvas.before:
+                            Color:
+                                rgba: (0/255.0,156/255.0,166/255.0,1)
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+                                radius: [2]
+
+                    Label:
+                        id: std
+                    # pos_hint:{"x":0.35,"y":0.08}
+                        text: ""
+                        color: (0,0,0,1)
+                        #size_hint: 0.7, 0.1
+                        canvas.before:
+                            Color:
+                                rgba: (0/255.0,156/255.0,166/255.0,1)
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+                                radius: [2]
+                    Label:
+                        id: hiv
+                        #pos_hint: {"x":0.15, "top":0.8}
+                        text: ""
+                        color: (0,0,0,1)
+                        #size_hint: 0.7, 0.1
+                        canvas.before:
+                            Color:
+                                rgba: (0/255.0,156/255.0,166/255.0,1)
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+                                radius: [2]
+                    Label:
+                        id: pregnancy
+                        #pos_hint: {"x":0.15, "top":0.8}
+                        text: ""
+                        color: (0,0,0,1)
+                        #size_hint: 0.7, 0.1
+                        canvas.before:
+                            Color:
+                                rgba: (0/255.0,156/255.0,166/255.0,1)
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+                                radius: [2]
+                    Label:
+                        id: contraception
+                        #pos_hint: {"x":0.15, "top":0.8}
+                        text: ""
+                        color: (0,0,0,1)
+                        #size_hint: 0.7, 0.1
+                        canvas.before:
+                            Color:
+                                rgba: (0/255.0,156/255.0,166/255.0,1)
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+                                radius: [2]
+                    Label:
+                        id: sexualPartners
+                        #pos_hint: {"x":0.15, "top":0.8}
+                        text: ""
+                        color: (0,0,0,1)
+                        #size_hint: 0.7, 0.1
+                        canvas.before:
+                            Color:
+                                rgba: (0/255.0,156/255.0,166/255.0,1)
+                            RoundedRectangle:
+                                size: self.size
+                                pos: self.pos
+                                radius: [2]
+<ResultWindow>:
+    name: "result"
+    output: output
+    padding: 10
+    spacing: 10
+            
+    FloatLayout:
+        cols:1
+
+        FloatLayout:
+            size: root.width, root.height
+
+            Label:
+                text: "Result" 
+                pos_hint: {"x":0.35, "y":0.81}
+                font_size: 23
+                bold: True
+
+            Button: 
+                background_color: (1,1,1,1)
+                pos_hint: {"x":0, "y": 0.92}
+                size_hint: (0.07, 0.07)
+                on_release: app.root.current = "home"
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Image:
+                    source: 'images/arrow.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+            Button: 
+                background_color: (1,1,1,1)
+                pos_hint: {"x":0.9, "y": 0.92}
+                size_hint: (0.07, 0.07)
+                on_release: app.root.current = "profile"
+                canvas.before:
+                    Color:
+                        rgba: (1,1,1,1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                Image:
+                    source: 'images/profile.png'
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+            Label:
+                text: "Prediction:  " 
+                pos_hint: {"x":0.35, "y":0.73}
+                font_size: 18
+            Label:
+                id: output
+                text: ""
+                #x:400
+                y:300
+                pos_hint:{'center_x':0.5}
+                font_size: 100
+                bold: True
+                color: (0,0,0,1)
+                canvas.before:
+                    Color:
+                        rgba: (0/255.0,156/255.0,166/255.0,1)
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+            FloatLayout:
+                Label:
+                    pos_hint: {'center_x':0.5,"y":0.27}
+                    text: "Risk Factors:"
+                    color:(0,0,0,1)
+                    bold: True
+
+                Label:
+                    pos_hint:{'center_x':0.5,"y":0.1}
+                    text: "o Your age.\n o Your smoking habits. Whether you smoke or not and how often.\n o Whether you have been diagnosed with either HIV or STD.\n o The number of times you have been pregnant.\n o You have family members who have cervical cancer.\n o Whether you have been on any contraception.\n o Numbers of sexual partner."
+                    size_hint: (0.845, 0.35)
+                    color:(0,0,0,.8)
+                    background_normal: ''
+                    background_color: (0/255.0,156/255.0,166/255.0,.65)
+                    #bg color
+                    canvas.before:
+                        Color:
+                            rgba: self.background_color
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [20]
